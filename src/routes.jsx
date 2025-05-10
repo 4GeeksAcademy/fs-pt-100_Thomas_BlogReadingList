@@ -1,14 +1,18 @@
 // Import necessary components and functions from react-router-dom.
 
+import React from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
 } from "react-router-dom";
-import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
-import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
+import { Layout } from "./pages/Layout.jsx";
+import { Home } from "./pages/Home.jsx";
+import { Details } from "./pages/details.jsx";
+import { DetailsType } from "./pages/details-type.jsx";
+import { DetailsLocation } from "./pages/details-location.jsx";
+import { Single } from "./pages/Single.jsx";
+import { Demo } from "./pages/Demo.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,6 +27,9 @@ export const router = createBrowserRouter(
 
         {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
         <Route path= "/" element={<Home />} />
+        <Route path="/details/:id" element={<Details/>} />
+        <Route path="/details-type/:id" element={<DetailsType/>} />
+        <Route path="/details-location/:id" element={<DetailsLocation/>} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
       </Route>
