@@ -21,6 +21,10 @@ export function StoreProvider({ children }) {
 
             dispatch({ type: 'load_pokemon', payload: data })
         )
+                pokeApiServices.getAllTypes().then(data=> 
+
+            dispatch({ type: 'load_types', payload: data })
+        )
     },[])
 
 

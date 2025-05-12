@@ -3,6 +3,8 @@ export const initialStore=()=>{
     message: null,
     pokemons: null,
     details: null,
+    types: [],
+    favorites: [],
     todos: [
       {
         id: 1,
@@ -29,6 +31,23 @@ export default function storeReducer(store, action = {}) {
       return {
         ...store,
         details: action.payload
+      }
+    case "load_types":
+      return {
+        ...store,
+        types: action.payload
+      }
+    case "add_favorite":
+      let favorites = []
+      if(store.favorites.includes(action.payload)){
+        favorites = store.favorites.filter(fav => fav != action.payload)
+      }
+      else{
+        favorites = [...store.favorites, action.payload]
+      }
+      return {
+        ...store,
+        favorites: favorites
       }
     case 'add_task':
 

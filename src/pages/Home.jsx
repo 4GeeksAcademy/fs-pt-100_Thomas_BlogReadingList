@@ -24,7 +24,7 @@ export const Home = () => {
 			</div>
 		<h2>Types</h2>
 			<div className="d-flex overflow-auto mb-3">
-			{store.pokemons?.results?.map((el,i) => <TypeCard key={i} name={el.name} url={el.url} />)}
+			{store.types?.results?.map((el,i) => <TypeCard key={i} name={el.name} url={el.url} />)}
 			</div>
 		<h2>Locations</h2>
 			<div className="d-flex overflow-auto mb-3">

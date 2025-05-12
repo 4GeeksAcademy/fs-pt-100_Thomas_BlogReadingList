@@ -1,10 +1,12 @@
 import React from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { ModalExample } from "./modal"
 import PropTypes from "prop-types"
 
 export const PokemonCard = ({ name, url }) => {
+    const { store, dispatch } = useGlobalReducer()
     let aux = url.split('/') //separamos el texto en todos los lugares donde este el /
     let id = aux[6] //en la posicion 6 del array de aux esta el id
     const [modalShow, setModalShow] = useState(false)
@@ -15,8 +17,10 @@ export const PokemonCard = ({ name, url }) => {
         e.preventDefault();
         const sound = new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
         sound.play();
+
         console.log('click on fav')
         setIsFav(prev => !prev);
+        dispatch({type: "add_favorite", payload: name})
     }
 
     return (

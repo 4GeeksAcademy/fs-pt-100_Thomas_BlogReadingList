@@ -24,4 +24,52 @@ pokeApiServices.getOne = async id => {
     }
 }
 
+pokeApiServices.getAllTypes = async () => {
+    try {
+        const resp = await fetch("https://pokeapi.co/api/v2/type");
+        if (!resp.ok) throw new Error("error fetching data")
+        const data = await resp.json()
+        return data
+
+    } catch (error){
+        console.log(error);
+    }
+}
+
+pokeApiServices.getOneType = async id => {
+    try {
+        const resp = await fetch("https://pokeapi.co/api/v2/type/"+id);
+        if (!resp.ok) throw new Error("error fetching data")
+        const data = await resp.json()
+        return data
+
+    } catch (error){
+        console.log(error);
+    }
+}
+
+pokeApiServices.getAllLocations = async () => {
+    try {
+        const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+        if (!resp.ok) throw new Error("error fetching data")
+        const data = await resp.json()
+        return data
+
+    } catch (error){
+        console.log(error);
+    }
+}
+
+pokeApiServices.getOneLocation = async id => {
+    try {
+        const resp = await fetch("https://pokeapi.co/api/v2/pokemon/"+id);
+        if (!resp.ok) throw new Error("error fetching data")
+        const data = await resp.json()
+        return data
+
+    } catch (error){
+        console.log(error);
+    }
+}
+
 export default pokeApiServices

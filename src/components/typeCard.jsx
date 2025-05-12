@@ -9,6 +9,8 @@ export const TypeCard = ({ name, url }) => {
     let id = aux[6] //en la posicion 6 del array de aux esta el id
     const [modalShow, setModalShow] = useState(false)
 
+    console.log(id)
+
     const [isFav, setIsFav] = useState(false);
 
     const handleFav = () => {
@@ -20,7 +22,7 @@ export const TypeCard = ({ name, url }) => {
         <div className= "card text-center col-sm-6 col-md-4 col-lg-3 m-2 border border-4">
             <div className="d-flex flex-column align-items-center justify-content-center">
                 <h3 className="card-title">{name}</h3>
-                <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={name} />
+                <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/${id}.png`} alt={name} />
                 <Link to={'/details/'+id}
                     className=" btn btn-primary"
                 >
