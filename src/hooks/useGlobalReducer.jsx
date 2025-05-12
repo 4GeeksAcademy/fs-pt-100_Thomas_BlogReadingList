@@ -15,21 +15,21 @@ export function StoreProvider({ children }) {
     const [store, dispatch] = useReducer(storeReducer, initialStore())
     // Provide the store and dispatch method to all child components.
    
-   //igual a window.onload, solo se ejecutara una sola vez en la vida de la aplicacion
-    useEffect(()=>{
-        pokeApiServices.getAllPokemon().then(data=> 
+    //igual a window.onload, solo se ejecutara una sola vez en la vida de la aplicacion
+    useEffect(() => {
+        pokeApiServices.getAllPokemon().then(data =>
 
             dispatch({ type: 'load_pokemon', payload: data })
         )
-                pokeApiServices.getAllTypes().then(data=> 
+        pokeApiServices.getAllTypes().then(data =>
 
             dispatch({ type: 'load_types', payload: data })
         )
-                pokeApiServices.getAllItems().then(data=> 
+        pokeApiServices.getAllItems().then(data =>
 
             dispatch({ type: 'load_items', payload: data })
         )
-    },[])
+    }, [])
 
 
     return <StoreContext.Provider value={{ store, dispatch }}>

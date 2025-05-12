@@ -16,13 +16,13 @@ export const Navbar = () => {
 						Favorites
 					</button>
 					<ul className="dropdown-menu">
-						Pokémon:
+						<li><h6 className="dropdown-header">Pokémon</h6></li>
 						{store.favoritePokemon?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
 						<li><hr className="dropdown-divider"/></li>
-						Types:
+						<li><h6 className="dropdown-header">Types</h6></li>
 						{store.favoriteTypes?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
 						<li><hr className="dropdown-divider"/></li>
-						Items:
+						<li><h6 className="dropdown-header">Items</h6></li>
 						{store.favoriteItems?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
 					</ul>
 				</div>

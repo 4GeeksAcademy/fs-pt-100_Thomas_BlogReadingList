@@ -57,6 +57,30 @@ export default function storeReducer(store, action = {}) {
         ...store,
         favoritePokemon: favoritePokemon
       };
+    case "add_favorite_type":
+      let favoriteTypes = []
+      if(store.favoriteTypes.includes(action.payload)){
+        favoriteTypes = store.favoriteTypes.filter(fav => fav != action.payload)
+      }
+      else{
+        favoriteTypes = [...store.favoriteTypes, action.payload]
+      }
+      return {
+        ...store,
+        favoriteTypes: favoriteTypes
+      };
+    case "add_favorite_item":
+      let favoriteItems = []
+      if(store.favoriteItems.includes(action.payload)){
+        favoriteItems = store.favoriteItems.filter(fav => fav != action.payload)
+      }
+      else{
+        favoriteItems = [...store.favoriteItems, action.payload]
+      }
+      return {
+        ...store,
+        favoriteItems: favoriteItems
+      };
     default:
       throw Error('Unknown action.');
   }    

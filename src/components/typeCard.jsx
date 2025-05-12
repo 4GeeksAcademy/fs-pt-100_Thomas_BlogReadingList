@@ -1,10 +1,12 @@
 import React from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { ModalExample } from "./modal"
 import PropTypes from "prop-types"
 
 export const TypeCard = ({ name, url }) => {
+    const { store, dispatch } = useGlobalReducer()
     const [modalShow, setModalShow] = useState(false)
     let aux = url.split('/') //separamos el texto en todos los lugares donde este el /
     let id = aux[6] //en la posicion 6 del array de aux esta el id
@@ -13,9 +15,11 @@ export const TypeCard = ({ name, url }) => {
 
     const [isFav, setIsFav] = useState(false);
 
-    const handleFav = () => {
+    const handleFav = (e) => {
+        e.preventDefault();
         console.log('click on fav')
         setIsFav(prev => !prev);
+        dispatch({type: "add_favorite_type", payload: name})
     }
 
     return (
