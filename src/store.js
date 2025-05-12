@@ -7,7 +7,9 @@ export const initialStore=()=>{
     detailsItem: null,
     types: [],
     items: [],
-    favorites: [],
+    favoritePokemon: [],
+    favoriteTypes: [],
+    favoriteItems: [],
   }
 }
 
@@ -43,17 +45,17 @@ export default function storeReducer(store, action = {}) {
         ...store,
         detailsItem: action.payload
       }
-    case "add_favorite":
-      let favorites = []
-      if(store.favorites.includes(action.payload)){
-        favorites = store.favorites.filter(fav => fav != action.payload)
+    case "add_favorite_pokemon":
+      let favoritePokemon = []
+      if(store.favoritePokemon.includes(action.payload)){
+        favoritePokemon = store.favoritePokemon.filter(fav => fav != action.payload)
       }
       else{
-        favorites = [...store.favorites, action.payload]
+        favoritePokemon = [...store.favoritePokemon, action.payload]
       }
       return {
         ...store,
-        favorites: favorites
+        favoritePokemon: favoritePokemon
       };
     default:
       throw Error('Unknown action.');

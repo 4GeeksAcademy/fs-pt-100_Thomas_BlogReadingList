@@ -20,7 +20,7 @@ export const PokemonCard = ({ name, url }) => {
 
         console.log('click on fav')
         setIsFav(prev => !prev);
-        dispatch({type: "add_favorite", payload: name})
+        dispatch({type: "add_favorite_pokemon", payload: name})
     }
 
     return (

@@ -1,8 +1,9 @@
 import React from "react"
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-
+	const { store, dispatch } = useGlobalReducer()
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
@@ -15,11 +16,14 @@ export const Navbar = () => {
 						Favorites
 					</button>
 					<ul className="dropdown-menu">
-						<li><a className="dropdown-item" href="#">Action</a></li>
-						<li><a className="dropdown-item" href="#">Another action</a></li>
-						<li><a className="dropdown-item" href="#">Something else here</a></li>
+						Pokémon:
+						{store.favoritePokemon?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
 						<li><hr className="dropdown-divider"/></li>
-						<li><a className="dropdown-item" href="#">Separated link</a></li>
+						Types:
+						{store.favoriteTypes?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
+						<li><hr className="dropdown-divider"/></li>
+						Items:
+						{store.favoriteItems?.map((el,i) => <li key={i}><a className="dropdown-item" href="#">{el.name}</a></li> )}
 					</ul>
 				</div>
 			</div>
