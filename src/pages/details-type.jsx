@@ -11,8 +11,8 @@ export const DetailsType = () => {
 
 
     const getdetails = async () => {
-        const resp = await pokeApiServices.getOne(id)
-        dispatch({type: 'pokemon_details', payload: resp})
+        const resp = await pokeApiServices.getOneType(id)
+        dispatch({type: 'load_type_details', payload: resp})
     }
 
     useEffect(()=>{
@@ -23,43 +23,40 @@ export const DetailsType = () => {
     return (
 
         <div className="container my-3 w-50 d-flex flex-column align-items-center justify-content-center">
-            <h3 className="text-center">Details for {store.details?.name
+            <h3 className="text-center">Details for {store.detailsType?.name
                         .split(' ')
                         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ')}</h3>
-            <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={name} />
+                        .join(' ')} type</h3>
+            <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/${id}.png`} alt={name} />
             <div className="row">
                 <div className="col-12 col-md-6 p-3">
-                    <h5>Type(s)</h5>
+                    <h5>Strong against:</h5>
                     <ul>
-                        {store.details?.types?.map((typeObj, index) => (
-                            <li key={index}>{typeObj.type.name}</li>
+                        {store.detailsType?.damage_relations?.double_damage_to?.map((typeObj, index) => (
+                            <li key={index}>{typeObj.name}</li>
                         ))}
                     </ul>
                 </div>
                 <div className="col-12 col-md-6 p-3">
-                    <h5>Size</h5>
+                    <h5>Weak against:</h5>
                     <ul>
-                        <li>Height: {store.details?.height} cm</li>
-                        <li>Weight: {store.details?.weight} kg</li>
-                    </ul>
-                </div>
-                <div className="col-12 col-md-6 p-3">
-                    <h5>Abilitie(s)</h5>
-                    <ul>
-                        {store.details?.abilities?.map((abilityObj, index) => (
-                            <li key={index}>{abilityObj.ability.name}</li>
+                        {store.detailsType?.damage_relations?.double_damage_from?.map((typeObj, index) => (
+                            <li key={index}>{typeObj.name}</li>
                         ))}
                     </ul>
                 </div>
+                {store.detailsType?.damage_relations?.no_damage_from?.length > 0 && (
+                <>
                 <div className="col-12 col-md-6 p-3">
-                    <h5>Cry</h5>
-                    <p className="text-center"><i
-                        className="fa fa-2x fa-volume-up"
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`).play()}
-                    /></p>
+                    <h5>Immune to:</h5>
+                    <ul>
+                        {store.detailsType?.damage_relations?.no_damage_from?.map((typeObj, index) => (
+                            <li key={index}>{typeObj.name}</li>
+                        ))}
+                    </ul>
                 </div>
+                </>
+                )}
             </div>
         </div>
     )

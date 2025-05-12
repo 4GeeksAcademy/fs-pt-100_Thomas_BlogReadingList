@@ -1,6 +1,6 @@
 const pokeApiServices = {}
 
-pokeApiServices.getAll = async () => {
+pokeApiServices.getAllPokemon = async () => {
     try {
         const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
         if (!resp.ok) throw new Error("error fetching data")
@@ -12,7 +12,7 @@ pokeApiServices.getAll = async () => {
     }
 }
 
-pokeApiServices.getOne = async id => {
+pokeApiServices.getOnePokemon = async id => {
     try {
         const resp = await fetch("https://pokeapi.co/api/v2/pokemon/"+id);
         if (!resp.ok) throw new Error("error fetching data")
@@ -48,9 +48,9 @@ pokeApiServices.getOneType = async id => {
     }
 }
 
-pokeApiServices.getAllLocations = async () => {
+pokeApiServices.getAllItems = async () => {
     try {
-        const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+        const resp = await fetch("https://pokeapi.co/api/v2/item/");
         if (!resp.ok) throw new Error("error fetching data")
         const data = await resp.json()
         return data
@@ -60,9 +60,9 @@ pokeApiServices.getAllLocations = async () => {
     }
 }
 
-pokeApiServices.getOneLocation = async id => {
+pokeApiServices.getOneItem = async id => {
     try {
-        const resp = await fetch("https://pokeapi.co/api/v2/pokemon/"+id);
+        const resp = await fetch("https://pokeapi.co/api/v2/item/"+id);
         if (!resp.ok) throw new Error("error fetching data")
         const data = await resp.json()
         return data

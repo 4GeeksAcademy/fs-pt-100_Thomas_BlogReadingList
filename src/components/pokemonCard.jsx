@@ -33,7 +33,7 @@ export const PokemonCard = ({ name, url }) => {
                         .join(' ')}
                 </h3>
                 <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={name} />
-                <Link to={'/details/'+id}
+                <Link to={'/details-pokemon/'+id}
                     className=" btn btn-primary"
                 >
                     Learn more

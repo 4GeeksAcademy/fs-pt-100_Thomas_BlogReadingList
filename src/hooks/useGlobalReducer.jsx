@@ -17,13 +17,17 @@ export function StoreProvider({ children }) {
    
    //igual a window.onload, solo se ejecutara una sola vez en la vida de la aplicacion
     useEffect(()=>{
-        pokeApiServices.getAll().then(data=> 
+        pokeApiServices.getAllPokemon().then(data=> 
 
             dispatch({ type: 'load_pokemon', payload: data })
         )
                 pokeApiServices.getAllTypes().then(data=> 
 
             dispatch({ type: 'load_types', payload: data })
+        )
+                pokeApiServices.getAllItems().then(data=> 
+
+            dispatch({ type: 'load_items', payload: data })
         )
     },[])
 
