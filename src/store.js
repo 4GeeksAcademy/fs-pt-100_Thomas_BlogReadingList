@@ -1,5 +1,5 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     message: null,
     pokemons: null,
     detailsPokemon: null,
@@ -14,7 +14,7 @@ export const initialStore=()=>{
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
+  switch (action.type) {
     case "load_pokemon":
       return {
         ...store,
@@ -46,42 +46,45 @@ export default function storeReducer(store, action = {}) {
         detailsItem: action.payload
       }
     case "add_favorite_pokemon":
-      let favoritePokemon = []
-      if(store.favoritePokemon.includes(action.payload)){
-        favoritePokemon = store.favoritePokemon.filter(fav => fav != action.payload)
+      const pokemonExists = store.favoritePokemon.some(fav => fav.id === action.payload.id);
+      let favoritePokemon;
+      if (pokemonExists) {
+        favoritePokemon = store.favoritePokemon.filter(fav => fav.id !== action.payload.id);
       }
-      else{
-        favoritePokemon = [...store.favoritePokemon, action.payload]
+      else {
+        favoritePokemon = [...store.favoritePokemon, action.payload];
       }
       return {
         ...store,
-        favoritePokemon: favoritePokemon
+        favoritePokemon
       };
     case "add_favorite_type":
-      let favoriteTypes = []
-      if(store.favoriteTypes.includes(action.payload)){
-        favoriteTypes = store.favoriteTypes.filter(fav => fav != action.payload)
+      const typeExists = store.favoriteTypes.some(fav => fav.id === action.payload.id);
+      let favoriteTypes;
+      if (typeExists) {
+        favoriteTypes = store.favoriteTypes.filter(fav => fav.id !== action.payload.id);
       }
-      else{
-        favoriteTypes = [...store.favoriteTypes, action.payload]
+      else {
+        favoriteTypes = [...store.favoriteTypes, action.payload];
       }
       return {
         ...store,
-        favoriteTypes: favoriteTypes
+        favoriteTypes
       };
     case "add_favorite_item":
-      let favoriteItems = []
-      if(store.favoriteItems.includes(action.payload)){
-        favoriteItems = store.favoriteItems.filter(fav => fav != action.payload)
+      const itemExists = store.favoriteItems.some(fav => fav.id === action.payload.id);
+      let favoriteItems;
+      if (itemExists) {
+        favoriteItems = store.favoriteItems.filter(fav => fav.id !== action.payload.id);
       }
-      else{
-        favoriteItems = [...store.favoriteItems, action.payload]
+      else {
+        favoriteItems = [...store.favoriteItems, action.payload];
       }
       return {
         ...store,
-        favoriteItems: favoriteItems
+        favoriteItems
       };
     default:
       throw Error('Unknown action.');
-  }    
+  }
 }

@@ -6,28 +6,38 @@ import useGlobalReducer from "../hooks/useGlobalReducer"
 
 export const DetailsPokemon = () => {
 
-    const {id, name} = useParams()
-    const {store, dispatch} = useGlobalReducer()
+    const { id, name } = useParams()
+    const { store, dispatch } = useGlobalReducer()
 
 
     const getdetails = async () => {
         const resp = await pokeApiServices.getOnePokemon(id)
-        dispatch({type: 'load_pokemon_details', payload: resp})
+        dispatch({ type: 'load_pokemon_details', payload: resp })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getdetails()
-    },[])
+    }, [])
+
+    const isFav = store.favoritePokemon.some(p => p.id === id);
+
+    const handleFav = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "add_favorite_pokemon",
+            payload: { name: store.detailsPokemon?.name, id }
+        })
+    }
 
 
     return (
 
         <div className="container my-3 w-50 d-flex flex-column align-items-center justify-content-center">
             <h3 className="text-center">Details for {store.detailsPokemon?.name
-                        .split(' ')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ')}</h3>
-            <img className="card-img-top w-50" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={name} />
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')}</h3>
+            <img className="card-img-top w-25" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={name} />
             <div className="row">
                 <div className="col-12 col-md-6 p-3">
                     <h5>Type(s)</h5>
@@ -48,7 +58,7 @@ export const DetailsPokemon = () => {
                     <h5>Abilitie(s)</h5>
                     <ul>
                         {store.detailsPokemon?.abilities?.map((abilityObj, index) => (
-                            <li key={index}>{abilityObj.ability.name}</li>
+                            <li key={index}>{abilityObj.ability.name.replaceAll("-"," ")}</li>
                         ))}
                     </ul>
                 </div>
@@ -61,6 +71,7 @@ export const DetailsPokemon = () => {
                     /></p>
                 </div>
             </div>
+            <div className="text-center"><i className={`btn text-danger ${isFav ? 'fas' : 'far'} fa-heart fa-2x`} onClick={handleFav} /></div>
         </div>
     )
 } 

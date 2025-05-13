@@ -14,7 +14,7 @@ export function StoreProvider({ children }) {
     // Initialize reducer with the initial state.
     const [store, dispatch] = useReducer(storeReducer, initialStore())
     // Provide the store and dispatch method to all child components.
-   
+
     //igual a window.onload, solo se ejecutara una sola vez en la vida de la aplicacion
     useEffect(() => {
         pokeApiServices.getAllPokemon().then(data =>
