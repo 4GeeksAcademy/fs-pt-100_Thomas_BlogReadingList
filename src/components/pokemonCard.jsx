@@ -12,6 +12,7 @@ export const PokemonCard = ({ name, url }) => {
     const handleFav = (e) => {
         e.preventDefault();
         const sound = new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`)
+        sound.volume = 0.1;
         sound.play();
         dispatch({
             type: "add_favorite_pokemon",

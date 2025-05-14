@@ -84,6 +84,21 @@ export default function storeReducer(store, action = {}) {
         ...store,
         favoriteItems
       };
+    case "delete_favorite_pokemon":
+      return {
+        ...store,
+        favoritePokemon: store.favoritePokemon.filter(fav => fav.id !== action.payload.id)
+      };
+    case "delete_favorite_type":
+      return {
+        ...store,
+        favoriteTypes: store.favoriteTypes.filter(fav => fav.id !== action.payload.id)
+      };
+    case "delete_favorite_item":
+      return {
+        ...store,
+        favoriteItems: store.favoriteItems.filter(fav => fav.id !== action.payload.id)
+      };
     default:
       throw Error('Unknown action.');
   }
